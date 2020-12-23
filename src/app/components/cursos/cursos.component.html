@@ -1,0 +1,41 @@
+<div class="card bg-light mb-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <div class="alert alert-info" *ngIf="lista?.length == 0">
+            No hay cursos en la base de datos
+        </div>
+        <button class="btn btn-primary my-2" [routerLink]="['/cursos/form']" routerLinkActive="router-link-active">Crear</button>
+        <table class="table table-hover table-striped" *ngIf="lista?.length > 0">
+
+            <thead class="thead-dark">
+                <th>N</th>
+                <th>NOMBRE</th>
+                <th>ALUMNOS</th>
+                <th>EXAMENES</th>
+                <th>CREADO EN</th>
+                <th>EDITAR</th>
+                <th>ELIMINAR</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let curso of lista">
+                    <td>{{curso.id}}</td>
+                    <td>{{curso.nombre}}</td>
+                    <td><button class="btn btn-info btn-sm" [routerLink]="['/cursos/asignar-alumnos', curso.id]">
+                        Añadir ({{curso.alumnos.length}}) </button>
+                    </td>
+                    <td><button class="btn btn-info btn-sm" [routerLink]="['/examenes/asignar-examenes', curso.id]">
+                        Añadir ({{curso.examenes.length}}) </button>
+                    </td>
+                    <td>{{curso.createAt | date: 'dd/MM/yyyy'}}</td>
+                    <td><button class="btn btn-primary btn-sm" [routerLink]="['/cursos/form', curso.id]">
+                        Editar</button>
+                    </td>
+                    <td><button class="btn btn-danger btn-sm" (click)="eliminar(curso)">
+                                Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageIndex]="paginaActual" [pageSizeOptions]="pageSizeOptions" (page)="paginar($event)" showFirstLastButtons class="float-left mx-2"></mat-paginator>
+    </div>
+</div>

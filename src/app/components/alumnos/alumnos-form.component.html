@@ -1,0 +1,45 @@
+<div class="card bg-light mb-3">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <button class="btn btn-secondary my-2" routerLink="/alumnos">Volver</button>
+        <form action="">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="model.nombre">
+                <div class="alert alert-danger my-1" *ngIf="error?.nombre">
+                    {{error.nombre}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" id="apellido" class="form-control" [(ngModel)]="model.apellido">
+                <div class="alert alert-danger my-1" *ngIf="error?.apellido">
+                    {{error.apellido}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" class="form-control" [(ngModel)]="model.email">
+                <div class="alert alert-danger my-1" *ngIf="error?.email">
+                    {{error.email}}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01">Seleccionar Foto</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" (click)=" model.id ? editar() : crear()">                   
+                    {{ model.id ? 'Editar' : 'Crear' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

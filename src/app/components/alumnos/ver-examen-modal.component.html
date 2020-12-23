@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Curso {{curso.nombre}}</h1>
+<div mat-dialog-content>
+    <p>Examen {{examen.nombre}}</p>
+    <mat-expansion-panel *ngFor="let respuesta of respuestas; let i = index">
+        <mat-expansion-panel-header>
+            {{respuesta.pregunta.texto}}
+        </mat-expansion-panel-header>
+        <p>{{respuesta.texto}}</p>
+    </mat-expansion-panel>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cerrar()">Cerrar</button>
+</div>
